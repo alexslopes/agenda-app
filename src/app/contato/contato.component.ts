@@ -50,9 +50,9 @@ export class ContatoComponent implements OnInit {
   submit() {
     const formValues = this.formulario.value;
     const contato: Contato = new Contato(formValues.nome, formValues.email);
-    this.service.save(contato).subscribe( r => {
-      this.contatos.push(r);
-      console.log(this.contatos);
+    this.service.save(contato).subscribe( resposta => {
+      let lista : Contato[] = [...this.contatos /*spread operator*/, resposta]//cria uma nova lista para ser atualizada na tabela
+      this.contatos = lista;
     })
   }
 
